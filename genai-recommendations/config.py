@@ -8,7 +8,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Default model for Gemini
-DEFAULT_MODEL = "gemini-1.5-flash"
+DEFAULT_MODEL = "gemini-3.6-flash"
 
 def get_gemini_config():
     """

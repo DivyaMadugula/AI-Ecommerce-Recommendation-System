@@ -24,3 +24,21 @@ dist-ssr
 *.sw?
 .venv
 venv
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Environment files
+.env
+
+# React
+node_modules/
+dist/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log

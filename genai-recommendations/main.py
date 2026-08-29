@@ -135,7 +135,7 @@ def process_data(refined_df):
 def get_gemini_config():
     return {
         "google_api_key": os.getenv("GEMINI_API_KEY"),
-        "model_name": "gemini-1.5-flash"
+        "model_name": "gemini-3.6-flash"
     }
 
 def initialize_chains():

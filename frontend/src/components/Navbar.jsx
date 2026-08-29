@@ -132,12 +132,6 @@ function Navbar() {
         )}
         
         <div className="flex items-center space-x-4">
-          <Link to="/categories" className="hover:text-yellow-300 transition-colors">
-            Categories
-          </Link>
-          <Link to="/cart" className="hover:text-yellow-300 transition-colors">
-            Cart
-          </Link>
           {user ? (
           <>
             <span className="font-bold">Hi, {user.username}</span>

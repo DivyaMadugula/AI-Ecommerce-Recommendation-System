@@ -113,16 +113,21 @@ export default function HomePage() {
 
     setIsLoading(true)
     try {
-      const response = await fetch("http://localhost:8001/recommend", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          department: departmentQuery.trim(),
-        }),
-      })
+      const response = await fetch(
+  "http://localhost:8000/recommend",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      department: departmentQuery.trim(),
+      category: "",
+      brand: "",
+      price: ""
+    }),
+  }
+);
       const data = await response.json()
       if (data.status === "success") {
         setDepartmentResults(data.recommendations)
@@ -402,25 +407,51 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Department Results */}
-          {departmentResults && !isLoading && (
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 animate-fadeIn">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <FiStar className="w-6 h-6 mr-2 text-yellow-500" />
-                Your Personalized Recommendations
-              </h3>
-              <div className="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 mb-6">
-                <pre className="whitespace-pre-wrap text-gray-700 leading-relaxed">{departmentResults}</pre>
-              </div>
-              <Button
-                onClick={() => setDepartmentResults("")}
-                variant="outline"
-                className="border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white transition-all duration-300"
-              >
-                Clear Results
-              </Button>
-            </div>
-          )}
+         {/* Department Results */}
+{departmentResults && !isLoading && (
+  <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 animate-fadeIn">
+    <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+      <FiStar className="w-6 h-6 mr-2 text-yellow-500" />
+      Your Personalized Recommendations
+    </h3>
+
+    <div className="space-y-5">
+      {departmentResults.split("\n\n").map((product, index) => (
+        <div
+          key={index}
+          className="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl p-6 shadow-md border border-yellow-100"
+        >
+          <h4 className="text-xl font-bold text-blue-700 mb-3">
+            {product.split("\n")[0]}
+          </h4>
+
+          <div className="space-y-2">
+            {product
+              .split("\n")
+              .slice(1)
+              .map((detail, i) => (
+                <p
+                  key={i}
+                  className="text-gray-700 text-base"
+                >
+                  {detail.replace("- ", "")}
+                </p>
+              ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <Button
+      onClick={() => setDepartmentResults("")}
+      variant="outline"
+      className="mt-6 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white transition-all duration-300"
+    >
+      Clear Results
+    </Button>
+
+  </div>
+)}
         </div>
       </div>
     </div>
