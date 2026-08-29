@@ -8,12 +8,12 @@ import pandas as pd
 from dotenv import load_dotenv
 from langchain.chains import RetrievalQA, LLMChain
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.document_loaders import DataFrameLoader
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.document_loaders import DataFrameLoader
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain_text_splitter import CharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 from ast import literal_eval
 import logging
 
